@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fittfi — Own your financial story</title>
-  <link rel="preconnect" href="https://fonts.googleapi
-    s.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <style>
@@ -26,6 +25,7 @@
       --radius-pill: 50px;
       --radius-card: 16px;
       --radius-sm:    8px;
+      --gutter: clamp(1.5rem, 8vw, 6rem);
     }
 
     html { scroll-behavior: smooth; }
@@ -50,27 +50,27 @@
     }
     .nav-inner {
       max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
+      margin: 0 auto 0 var(--gutter);
+      padding: 0 1.5rem 0 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 52px;
+      height: 48px;
     }
     .nav-logo {
       font-family: var(--serif);
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: var(--ink);
       text-decoration: none;
       font-weight: 400;
     }
     .nav-links {
       display: flex;
-      gap: 1.75rem;
+      gap: 1.5rem;
       list-style: none;
     }
     .nav-links a {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 400;
       color: var(--ink-2);
       text-decoration: none;
@@ -80,46 +80,46 @@
     .nav-links a:hover { color: var(--ink); }
 
     /* UTIL */
-    .wrap { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; }
-    .wrap-wide { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+    .wrap { max-width: 600px; margin: 0 auto 0 var(--gutter); padding: 0 1.5rem 0 0; }
+    .wrap-wide { max-width: 960px; margin: 0 auto 0 var(--gutter); padding: 0 1.5rem 0 0; }
 
     /* HERO */
     #hero {
-      padding: 5rem 0 4.5rem;
+      padding: 4rem 0 3.5rem;
       background: var(--cream);
     }
     .hero-eyebrow {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
       color: var(--gold);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
     h1 {
       font-family: var(--serif);
-      font-size: clamp(2.8rem, 7vw, 4.2rem);
-      line-height: 1.08;
+      font-size: clamp(2.2rem, 5.5vw, 3.3rem);
+      line-height: 1.1;
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 1.1rem;
+      margin-bottom: 1rem;
     }
     .hero-sub {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       color: var(--ink-2);
-      max-width: 420px;
-      margin-bottom: 2.5rem;
-      line-height: 1.65;
+      max-width: 400px;
+      margin-bottom: 2.25rem;
+      line-height: 1.6;
     }
     .btn-row { display: flex; flex-direction: column; gap: 0.75rem; max-width: 320px; }
     .btn-primary {
       display: block;
       text-align: center;
-      padding: 14px 24px;
+      padding: 13px 22px;
       background: var(--gold);
       color: var(--ink);
       font-family: var(--sans);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -131,11 +131,11 @@
     .btn-ghost {
       display: block;
       text-align: center;
-      padding: 14px 24px;
+      padding: 13px 22px;
       border: 1px solid rgba(26,23,20,0.18);
       color: var(--ink);
       font-family: var(--sans);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -156,14 +156,14 @@
     .story-quote {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-      line-height: 1.65;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.6;
       color: var(--ink);
-      max-width: 600px;
-      margin-bottom: 1.25rem;
+      max-width: 580px;
+      margin-bottom: 1.1rem;
     }
     .story-byline {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 400;
       color: var(--ink-3);
       letter-spacing: 0.05em;
@@ -176,35 +176,35 @@
       background: var(--cream-2);
     }
     .section-label {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
       color: var(--ink-3);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
     }
     h2 {
       font-family: var(--serif);
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
       letter-spacing: -0.015em;
-      line-height: 1.15;
+      line-height: 1.2;
       color: var(--ink);
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.75rem;
     }
     .section-body {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: var(--ink-2);
-      max-width: 460px;
-      line-height: 1.7;
-      margin-bottom: 2rem;
+      max-width: 440px;
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
     }
     .quiz-cta {
       display: inline-block;
-      padding: 14px 28px;
+      padding: 13px 26px;
       background: var(--gold);
       color: var(--ink);
       font-family: var(--sans);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -248,28 +248,28 @@
     .badge-02 { background: #6D734B; }
     .badge-03 { background: var(--gold); color: var(--ink); }
     .avenue-sub {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 500;
       color: var(--ink-3);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
     .avenue-title {
       font-family: var(--serif);
-      font-size: 1.9rem;
+      font-size: 1.5rem;
       color: var(--ink);
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.7rem;
       line-height: 1.15;
     }
     .avenue-body {
-      font-size: 15px;
+      font-size: 13.5px;
       color: var(--ink-2);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
+      line-height: 1.65;
+      margin-bottom: 1.35rem;
     }
     .avenue-link {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -295,23 +295,23 @@
       border: 0.5px solid var(--rule);
     }
     .regen-label {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 500;
       color: var(--gold);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.65rem;
     }
     .regen-body {
-      font-size: 15px;
+      font-size: 13.5px;
       color: var(--ink);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
+      line-height: 1.65;
+      margin-bottom: 1.1rem;
     }
-    .chain { display: flex; flex-direction: column; gap: 0.65rem; }
-    .chain-step { display: flex; gap: 0.75rem; font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+    .chain { display: flex; flex-direction: column; gap: 0.6rem; }
+    .chain-step { display: flex; gap: 0.7rem; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
     .chain-arrow { color: var(--gold); font-weight: 500; flex-shrink: 0; margin-top: 1px; }
-    .community-foot { font-size: 15px; color: var(--ink-2); margin-top: 1.75rem; line-height: 1.7; font-style: italic; }
+    .community-foot { font-size: 13.5px; color: var(--ink-2); margin-top: 1.5rem; line-height: 1.65; font-style: italic; }
 
     /* FOUNDING */
     #founding {
@@ -334,14 +334,14 @@
     }
     .spots-num {
       font-family: var(--serif);
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       color: var(--gold);
       line-height: 1;
-      min-width: 2.5rem;
+      min-width: 2.2rem;
       text-align: center;
     }
     .spots-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       color: rgba(240,237,231,0.55);
       letter-spacing: 0.05em;
@@ -352,13 +352,13 @@
       padding: 5px 14px;
       border: 0.5px solid rgba(240,237,231,0.2);
       border-radius: var(--radius-pill);
-      font-size: 11px;
+      font-size: 10px;
       color: rgba(240,237,231,0.55);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.35rem;
       letter-spacing: 0.05em;
     }
-    .perks { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
-    .perk { display: flex; gap: 0.75rem; font-size: 15px; color: rgba(240,237,231,0.6); line-height: 1.55; }
+    .perks { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 2.25rem; }
+    .perk { display: flex; gap: 0.7rem; font-size: 13.5px; color: rgba(240,237,231,0.6); line-height: 1.5; }
     .perk-check { color: var(--gold); flex-shrink: 0; }
 
     /* FORM */
@@ -366,19 +366,19 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
     .field { display: flex; flex-direction: column; gap: 5px; }
     .field label {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 500;
       color: rgba(240,237,231,0.35);
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
     .field input, .field select {
-      padding: 12px 14px;
+      padding: 11px 14px;
       background: rgba(240,237,231,0.06);
       border: 0.5px solid rgba(240,237,231,0.14);
       border-radius: var(--radius-sm);
       font-family: var(--sans);
-      font-size: 14px;
+      font-size: 13px;
       color: var(--cream);
       outline: none;
       transition: border-color 0.15s;
@@ -389,11 +389,11 @@
     .field select option { color: var(--ink); background: #fff; }
     .field input:focus, .field select:focus { border-color: rgba(240,237,231,0.35); }
     .form-submit {
-      padding: 13px 28px;
+      padding: 12px 26px;
       background: var(--gold);
       color: var(--ink);
       font-family: var(--sans);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -405,13 +405,13 @@
     }
     .form-submit:hover { background: var(--gold-lt); }
     .form-submit:disabled { opacity: 0.45; cursor: default; }
-    .form-note { font-size: 12px; color: rgba(240,237,231,0.28); }
+    .form-note { font-size: 11px; color: rgba(240,237,231,0.28); }
     .success-msg {
       display: none;
       padding: 1.1rem 1.4rem;
       border: 0.5px solid rgba(240,237,231,0.2);
       border-radius: var(--radius-sm);
-      font-size: 14px;
+      font-size: 13px;
       color: rgba(240,237,231,0.65);
     }
 
@@ -425,10 +425,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12px;
+      font-size: 11px;
       color: rgba(240,237,231,0.3);
     }
-    .footer-logo { font-family: var(--serif); font-size: 1.05rem; color: rgba(240,237,231,0.6); }
+    .footer-logo { font-family: var(--serif); font-size: 0.95rem; color: rgba(240,237,231,0.6); }
 
     @media (max-width: 600px) {
       .nav-links { display: none; }
