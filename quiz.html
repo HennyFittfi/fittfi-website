@@ -3,52 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>FiTFi — Questions about you and your money</title>
+  <title>Fittfi — Questions about you and your money</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      --surface-1: #f6f6f6;
+      --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --font-serif: 'Fraunces', serif;
+      --surface-1: #F5F4F0;
       --surface-2: #ffffff;
-      --text-primary: #1a1a1a;
-      --text-secondary: #555555;
-      --text-muted: #888888;
-      --border: #e5e5e5;
-      --border-strong: #c0c0c0;
-      --radius: 10px;
-      --radius-lg: 14px;
+      --text-primary: #14171F;
+      --text-secondary: #4c4a42;
+      --text-muted: #8A8676;
+      --border: #DEDBD1;
+      --border-strong: #C7C2B4;
+      --gold: #B08A3E;
+      --emerald: #2F5D50;
+      --radius: 12px;
+      --radius-lg: 18px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-sans); background: #ffffff; min-height: 100vh; display: flex; justify-content: center; padding: 2rem 1rem 4rem; }
-    .wrap { width: 100%; max-width: 420px; }
-    .intro-card { background: var(--surface-1); border-radius: var(--radius-lg); padding: 1.75rem; margin-bottom: 1.5rem; }
-    .intro-name { font-size: 13px; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
-    .intro-title { font-size: 22px; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1.35; }
-    .intro-body { font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.5rem; }
-    .start-btn { width: 100%; padding: 14px; border: 1px solid var(--border-strong); border-radius: var(--radius); font-size: 15px; font-family: var(--font-sans); font-weight: 500; cursor: pointer; background: var(--surface-2); color: var(--text-primary); transition: background 0.15s; }
-    .start-btn:hover { background: var(--surface-1); }
-    .next-btn { margin-top: 1.25rem; width: 100%; padding: 14px; border: 1px solid var(--border-strong); border-radius: var(--radius); font-size: 15px; font-family: var(--font-sans); font-weight: 500; cursor: pointer; background: var(--surface-2); color: var(--text-primary); display: none; transition: background 0.15s; }
-    .next-btn:hover { background: var(--surface-1); }
-    .submit-btn { width: 100%; padding: 14px; border: 1px solid #1a1a1a; border-radius: var(--radius); font-size: 15px; font-family: var(--font-sans); font-weight: 500; cursor: pointer; background: #1a1a1a; color: #ffffff; transition: background 0.15s; margin-top: 0.5rem; }
-    .submit-btn:hover { background: #333; }
+    body { font-family: var(--font-sans); background: transparent; min-height: 100vh; display: flex; justify-content: center; padding: 0.5rem 0.25rem 2rem; color: var(--text-primary); }
+    .wrap { width: 100%; max-width: 460px; }
+    .intro-card { background: var(--surface-1); border-radius: var(--radius-lg); padding: 2rem 1.75rem; margin-bottom: 1.5rem; }
+    .intro-name { font-family: var(--font-serif); font-size: 13px; color: var(--gold); margin-bottom: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .intro-title { font-family: var(--font-serif); font-size: 26px; font-weight: 500; color: var(--text-primary); margin-bottom: 0.9rem; line-height: 1.3; }
+    .intro-body { font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.75rem; }
+    .start-btn { width: 100%; padding: 15px; border: none; border-radius: 999px; font-size: 14px; letter-spacing:0.03em; text-transform:uppercase; font-family: var(--font-sans); font-weight: 500; cursor: pointer; background: var(--gold); color: var(--text-primary); transition: background 0.15s, transform 0.15s; }
+    .start-btn:hover { background: #c39a4c; transform:translateY(-1px); }
+    .next-btn { margin-top: 1.4rem; width: 100%; padding: 15px; border: 1px solid var(--border-strong); border-radius: 999px; font-size: 14px; letter-spacing:0.03em; text-transform:uppercase; font-family: var(--font-sans); font-weight: 500; cursor: pointer; background: var(--surface-2); color: var(--text-primary); display: none; transition: background 0.15s, border-color 0.15s; }
+    .next-btn:hover { background: var(--surface-1); border-color: var(--text-primary); }
+    .submit-btn { width: 100%; padding: 15px; border: none; border-radius: 999px; font-size: 14px; letter-spacing:0.03em; text-transform:uppercase; font-family: var(--font-sans); font-weight: 500; cursor: pointer; background: var(--gold); color: var(--text-primary); transition: background 0.15s; margin-top: 0.5rem; }
+    .submit-btn:hover { background: #c39a4c; }
     .submit-btn:disabled { opacity: 0.5; cursor: default; }
-    .prog-wrap { margin-bottom: 1.75rem; }
-    .prog-bar { height: 2px; background: var(--border); border-radius: 2px; margin-bottom: 0.5rem; }
-    .prog-fill { height: 100%; background: var(--text-secondary); border-radius: 2px; transition: width 0.4s ease; }
-    .prog-label { font-size: 12px; color: var(--text-muted); }
-    .q-label { font-size: 11px; color: var(--text-muted); margin-bottom: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .q-text { font-size: 18px; font-weight: 600; color: var(--text-primary); line-height: 1.45; margin-bottom: 0.5rem; }
-    .q-note { font-size: 13px; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6; font-style: italic; }
-    .spacer { margin-bottom: 1.25rem; }
+    .prog-wrap { margin-bottom: 2rem; }
+    .prog-bar { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 0.6rem; overflow:hidden; }
+    .prog-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.4s ease; }
+    .prog-label { font-size: 12px; color: var(--text-muted); letter-spacing:0.03em; }
+    .q-label { font-family: var(--font-serif); font-size: 12px; color: var(--gold); margin-bottom: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .q-text { font-family: var(--font-serif); font-size: 21px; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin-bottom: 0.6rem; }
+    .q-note { font-size: 13px; color: var(--text-muted); margin-bottom: 1.4rem; line-height: 1.6; font-style: italic; }
+    .spacer { margin-bottom: 1.4rem; }
     .opts { display: flex; flex-direction: column; gap: 10px; }
-    .opt-btn { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 13px 15px; font-size: 15px; font-family: var(--font-sans); color: var(--text-primary); cursor: pointer; background: var(--surface-2); text-align: left; line-height: 1.5; transition: border-color 0.15s, background 0.15s, opacity 0.15s; min-height: 48px; display: flex; align-items: flex-start; gap: 10px; }
-    .opt-btn:hover { border-color: var(--border-strong); background: var(--surface-1); }
-    .opt-btn.picked { border: 2px solid #1a1a1a; background: var(--surface-1); }
+    .opt-btn { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px 16px; font-size: 15px; font-family: var(--font-sans); color: var(--text-primary); cursor: pointer; background: var(--surface-2); text-align: left; line-height: 1.5; transition: border-color 0.15s, background 0.15s, opacity 0.15s; min-height: 48px; display: flex; align-items: flex-start; gap: 10px; }
+    .opt-btn:hover { border-color: var(--gold); background: var(--surface-1); }
+    .opt-btn.picked { border: 2px solid var(--emerald); background: var(--surface-1); }
     .opt-btn.disabled { opacity: 0.3; cursor: default; pointer-events: none; }
-    .check { width: 20px; height: 20px; min-width: 20px; border: 1px solid var(--border-strong); border-radius: 5px; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 12px; background: var(--surface-2); flex-shrink: 0; color: var(--surface-2); }
-    .opt-btn.picked .check { background: #1a1a1a; border-color: #1a1a1a; color: #ffffff; }
+    .check { width: 20px; height: 20px; min-width: 20px; border: 1px solid var(--border-strong); border-radius: 6px; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 12px; background: var(--surface-2); flex-shrink: 0; color: var(--surface-2); }
+    .opt-btn.picked .check { background: var(--emerald); border-color: var(--emerald); color: #ffffff; }
     .opt-text { flex: 1; }
     .end-wrap { display: flex; flex-direction: column; gap: 1rem; }
-    .end-title { font-size: 20px; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+    .end-title { font-family: var(--font-serif); font-size: 24px; font-weight: 500; color: var(--text-primary); line-height: 1.35; }
     .end-body { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
     .summary-box { background: var(--surface-1); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 1rem 1.25rem; }
     .summary-item { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
@@ -57,17 +63,17 @@
     .summary-a { font-size: 14px; color: var(--text-primary); line-height: 1.5; }
     .contact-box { display: flex; flex-direction: column; gap: 10px; }
     .contact-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 0.25rem; }
-    .contact-input { width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; font-family: var(--font-sans); color: var(--text-primary); background: var(--surface-2); outline: none; transition: border-color 0.15s; }
-    .contact-input:focus { border-color: var(--border-strong); }
+    .contact-input { width: 100%; padding: 13px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 15px; font-family: var(--font-sans); color: var(--text-primary); background: var(--surface-2); outline: none; transition: border-color 0.15s; }
+    .contact-input:focus { border-color: var(--gold); }
     .contact-input::placeholder { color: var(--text-muted); }
     .status-note { font-size: 13px; color: var(--text-muted); text-align: center; padding: 0.25rem 0; }
-    .status-note.error { color: #c0392b; }
-    .thankyou-card { background: var(--surface-1); border-radius: var(--radius-lg); padding: 2rem 1.75rem; text-align: center; }
-    .thankyou-icon { font-size: 36px; margin-bottom: 1rem; }
-    .thankyou-title { font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1.4; }
+    .status-note.error { color: #b3452f; }
+    .thankyou-card { background: var(--surface-1); border-radius: var(--radius-lg); padding: 2.25rem 1.75rem; text-align: center; }
+    .thankyou-icon { width:44px; height:44px; border-radius:50%; background:var(--emerald); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--font-serif); font-size:18px; margin:0 auto 1.1rem; }
+    .thankyou-title { font-family: var(--font-serif); font-size: 22px; font-weight: 500; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1.4; }
     .thankyou-body { font-size: 15px; color: var(--text-secondary); line-height: 1.7; }
-    .mentor-card { background: var(--surface-1); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 1.75rem; }
-    .mentor-title { font-size: 20px; font-weight: 600; color: var(--text-primary); line-height: 1.4; margin-bottom: 0.75rem; }
+    .mentor-card { background: var(--surface-1); border-radius: var(--radius-lg); border: 1px solid var(--border); padding: 2rem 1.75rem; }
+    .mentor-title { font-family: var(--font-serif); font-size: 22px; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin-bottom: 0.75rem; }
     .mentor-body { font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.5rem; }
   </style>
 </head>
@@ -78,11 +84,11 @@
 
     const Q = {
       q1: { dim:"Your money, right now", q:"When you think about your finances right now, what's the honest feeling?", note:null, multi:false, max:null,
-        opts:["Anxious — I know I should be doing something","Comfortable — my money is in a safe place, that's enough","Guilty — I keep meaning to sort it out","Blank — I try not to think about it","Uncertain — I'm investing something but I'm not sure it's right","Confident — I have a strategy and I'm comfortable with it"] },
+        opts:["Anxious — I know I should be doing something","Comfortable — my money is in a safe place, that's enough","Guilty — I keep meaning to sort it out","Blank — I try not to think about it","Uncertain — I'm investing something but I'm not sure it's right","Not so bad — but I feel a bit behind","Confident — I have a strategy and I'm comfortable with it"] },
       q2: { dim:"Your financial picture", q:"What does your financial picture currently look like?", note:"Select all that apply.", multi:true, max:null,
         opts:["Cash in a current account","Savings account or deposit","Pension — I have one but I'm not sure what's in it","Pension — I know what I have and I'm on top of it","Property — inherited","Property — I bought it","Investments — stocks, funds or ETFs I chose myself"] },
       q2b: { dim:"Your investing experience", q:"Have you ever actively invested in stocks, ETFs, funds or similar — not through a pension?", note:null, multi:false, max:null,
-        opts:["Yes, and I stopped","Yes, and I'm still invested but not really sure what I'm doing","No"] },
+        opts:["Yes, and I stopped","Yes, and I'm still invested — and I feel like it's working as it should","Yes, and I'm still invested but a bit lost — I feel like I could be doing better","No"] },
       q2c: { dim:"How it ended up", q:"How did that experience end up?", note:null, multi:false, max:null,
         opts:["The platform or process was too confusing — I gave up","I didn't understand what I was buying and walked away","I lost money and it scared me","Someone advised me badly and I lost trust","Life got in the way — I just never went back"] },
       q3: { dim:"What gets in the way", q:"When you imagine 'dealing with your investments,' what comes up first?", note:null, multi:false, max:null,
@@ -92,9 +98,9 @@
       q4b: { dim:"Your financial state", q:"Overall, how would you describe the state of your finances right now?", note:null, multi:false, max:null,
         opts:["Scattered — I have things everywhere and no clear picture","Neglected — I know what I have but haven't dealt with it","Manageable — it's complex but I have it under control","Clean — everything is in one place and I understand it"] },
       q5a: { dim:"Money at home", q:"What's your current situation when it comes to managing money day to day?", note:null, multi:false, max:null,
-        opts:["I manage everything alone — I'm single","I manage everything alone — I'm in a relationship but handle finances independently","My partner and I manage it together equally","My partner — male — handles most of it, I have limited visibility","My partner — female — handles most of it, I have limited visibility","I've left it to my partner and I know that's a risk","I'm separating or recently separated — it's in flux"] },
+        opts:["I manage everything alone — I'm single","I'm in a relationship — we each manage our own finances separately","I'm in a relationship — I manage our shared finances independently","My partner and I manage it together equally","My partner — male — handles most of it, I have limited visibility","My partner — female — handles most of it, I have limited visibility","I've left it to my partner and I know that's a risk","I'm separating or recently separated — it's in flux"] },
       q5b: { dim:"Your circle", q:"Who do you talk to about money — honestly, not just in passing?", note:null, multi:false, max:null,
-        opts:["Nobody — I keep it completely private","My partner — but only at a surface level","My partner — openly and in depth","A female friend or friends","A male friend or family member","A financial advisor or professional","Nobody yet — but I wish I had someone"] },
+        opts:["Nobody — I keep it completely private","My partner — but only at a surface level","My partner — openly and in depth","A female friend or family member","A male friend or family member","Both — female and male friends or family members","A financial advisor or professional","Nobody yet — but I wish I had someone"] },
       q6: { dim:"Your trigger", q:"What would finally make you take action on your finances?", note:"Choose one or two — whichever feels right.", multi:true, max:2,
         opts:["Seeing exactly how much I'm losing by doing nothing","Having one trusted person tell me clearly what to do","Feeling confident enough that I won't make a mistake","Something changing in my life — a job, a move, a relationship","I'm already ready — I just need the right entry point"] },
       q7: { dim:"What you actually want", q:"When it comes to your finances — what do you actually want?", note:null, multi:false, max:null,
@@ -104,7 +110,7 @@
     };
 
     const flow = {
-      q1:(p)=>p===5?'mentor':'q2', q2:()=>'q2b', q2b:(p)=>p===0?'q2c':'q3',
+      q1:(p)=>p===6?'mentor':'q2', q2:()=>'q2b', q2b:(p)=>p===0?'q2c':'q3',
       q2c:()=>'q3', q3:()=>'q4a', q4a:()=>'q4b', q4b:()=>'q5a',
       q5a:()=>'q5b', q5b:()=>'q6', q6:()=>'q7', q7:()=>'q8', q8:()=>'end'
     };
@@ -119,9 +125,9 @@
     function showIntro(){
       document.getElementById('screen').innerHTML=`
         <div class="intro-card">
-          <div class="intro-name">FiTFi</div>
+          <div class="intro-name">Fittfi</div>
           <div class="intro-title">Questions about you and your money</div>
-          <div class="intro-body">No right or wrong answers. No scores. Just honest questions to help me understand if there's a way I can help — and if yes, where to put my focus.<br><br>Takes about 4 minutes.</div>
+          <div class="intro-body">No right or wrong answers. No scores. Just honest questions to help us understand where you are — and which avenue fits you best.<br><br>Takes about 4 minutes.</div>
           <button class="start-btn" onclick="showQ()">Let's go →</button>
         </div>`;
     }
@@ -184,7 +190,7 @@
     }
 
     function buildPayload(type){
-      const payload={ _subject: type==='mentor'?'FiTFi Mentor Interest':'New FiTFi Quiz Response' };
+      const payload={ _subject: type==='mentor'?'Fittfi Mentor Interest':'New Fittfi Quiz Response' };
       if(type==='mentor') payload['Type']='Mentor — wants to be involved';
       const name=document.getElementById('inp-name').value.trim();
       const email=document.getElementById('inp-email').value.trim();
@@ -263,13 +269,22 @@
     function showThankYou(){
       document.getElementById('screen').innerHTML=`
         <div class="thankyou-card">
-          <div class="thankyou-icon">🙏</div>
+          <div class="thankyou-icon">✓</div>
           <div class="thankyou-title">Thank you — this is genuinely helpful.</div>
-          <div class="thankyou-body">Your answers are on their way. I'll be in touch if you left your email — and either way, what you shared will help shape something real.</div>
+          <div class="thankyou-body">Your answers are on their way. We'll be in touch if you left your email — and either way, what you shared will help shape something real.</div>
         </div>`;
     }
 
     showIntro();
+
+    // notify parent frame of height changes so the embed can resize
+    function reportHeight(){
+      if(window.parent!==window){
+        window.parent.postMessage({ fittfiQuizHeight: document.body.scrollHeight }, '*');
+      }
+    }
+    new MutationObserver(reportHeight).observe(document.getElementById('screen'), { childList:true, subtree:true });
+    window.addEventListener('load', reportHeight);
   </script>
 </body>
 </html>
