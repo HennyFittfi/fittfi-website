@@ -1,398 +1,640 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fittfi — Own your financial story</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#14171F;
-    --ink-soft:#252A36;
-    --paper:#FFFFFF;
-    --paper-dim:#F5F4F0;
-    --emerald:#2F5D50;
-    --emerald-deep:#1D3B32;
-    --gold:#B08A3E;
-    --line:#DEDBD1;
-    --line-on-ink:rgba(20,23,31,0.1);
-    --line-on-dark:rgba(239,237,230,0.18);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Space Grotesk', sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3, .display{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    letter-spacing:-0.01em;
-  }
-  a{color:inherit;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fittfi — Own your financial story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* reduced motion */
-  @media (prefers-reduced-motion: reduce){
-    *{animation:none !important; transition:none !important;}
-  }
+    :root {
+      --cream:   #F0EDE7;
+      --cream-2: #E6E3DA;
+      --gold:    #B08A3E;
+      --gold-lt: #C9A455;
+      --teal:    #2A5C57;
+      --ink:     #1A1714;
+      --ink-2:   #5C564E;
+      --ink-3:   #9A9188;
+      --rule:    rgba(26,23,20,0.10);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --radius-pill: 50px;
+      --radius-card: 16px;
+      --radius-sm:    8px;
+    }
 
-  /* ---------- NAV ---------- */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:22px 32px;
-    background:rgba(255,255,255,0.82);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-    color:var(--ink);
-  }
-  .nav-wordmark{font-family:'Fraunces', serif; font-size:19px; letter-spacing:0.02em;}
-  .nav-links{display:flex; gap:28px; font-size:13px; letter-spacing:0.04em; text-transform:uppercase;}
-  .nav-links a{text-decoration:none; opacity:0.7;}
-  .nav-links a:hover{opacity:1;}
-  @media (max-width:640px){ .nav-links{display:none;} }
+    html { scroll-behavior: smooth; }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    background:var(--paper);
-    color:var(--ink);
-    min-height:auto;
-    display:flex; flex-direction:column; justify-content:flex-start;
-    position:relative;
-    overflow:hidden;
-    padding:150px 0 100px;
-  }
-  .hero .wrap{ max-width:none; margin:0; padding-left:32px; padding-right:32px; }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background:
-      radial-gradient(ellipse 60% 50% at 84% 16%, rgba(47,93,80,0.08), transparent 60%),
-      radial-gradient(ellipse 45% 40% at 10% 88%, rgba(176,138,62,0.10), transparent 65%);
-    pointer-events:none;
-  }
-  .eyebrow{
-    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
-    color:var(--gold); font-weight:500; margin-bottom:18px;
-    position:relative; z-index:1;
-    opacity:0; animation:rise 0.9s 0.15s ease forwards;
-  }
-  .hero h1{
-    font-size:clamp(30px, 4vw, 50px);
-    line-height:1.12;
-    font-weight:400;
-    max-width:640px;
-    white-space:normal;
-    position:relative; z-index:1;
-    opacity:0; animation:rise 1s 0.3s ease forwards;
-  }
-  .hero h1 em{
-    font-style:normal; color:var(--gold); font-weight:500;
-  }
-  .hero .sub{
-    font-size:clamp(14px, 1.1vw, 16px);
-    max-width:400px;
-    margin-top:14px;
-    color:#524F45;
-    font-weight:400;
-    position:relative; z-index:1;
-    opacity:0; animation:rise 1s 0.5s ease forwards;
-  }
-  .hero-cta{
-    margin-top:36px;
-    display:flex; gap:16px; align-items:center; flex-wrap:wrap;
-    position:relative; z-index:1;
-    opacity:0; animation:rise 1s 0.68s ease forwards;
-  }
-  @keyframes rise{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  .btn{
-    display:inline-flex; align-items:center; gap:10px;
-    font-family:'Space Grotesk', sans-serif;
-    font-size:14px; letter-spacing:0.03em; text-transform:uppercase; font-weight:500;
-    padding:16px 30px;
-    border-radius:999px;
-    text-decoration:none;
-    cursor:pointer;
-    border:1px solid transparent;
-    transition:all 0.25s ease;
-  }
-  .btn-primary{ background:var(--gold); color:var(--ink); }
-  .btn-primary:hover{ background:#dcb562; transform:translateY(-1px); }
-  .btn-ghost{ border-color:var(--line); color:var(--ink); background:transparent; }
-  .btn-ghost:hover{ border-color:var(--ink); }
-  .community .btn-ghost{ border-color:var(--line-on-dark); color:var(--paper); }
-  .community .btn-ghost:hover{ border-color:var(--paper); }
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(240,237,231,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-2);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
 
-  .hero-foot{
-    display:flex; justify-content:flex-start; gap:24px;
-    margin-top:80px;
-    font-size:12px; letter-spacing:0.06em; color:#8A8676;
-    position:relative; z-index:1;
-  }
+    /* UTIL */
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; }
+    .wrap-wide { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
 
-  /* ---------- SECTION SHELL ---------- */
-  section{ padding:120px 0; }
-  .section-head{ max-width:640px; margin-bottom:64px; }
-  .section-eyebrow{
-    font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
-    color:var(--emerald); font-weight:600; margin-bottom:16px;
-  }
-  .section-head h2{ font-size:clamp(30px, 4vw, 46px); line-height:1.08; }
-  .section-head p{ margin-top:18px; font-size:17px; color:#4c4a42; line-height:1.6; max-width:520px;}
+    /* HERO */
+    #hero {
+      padding: 5rem 0 4.5rem;
+      background: var(--cream);
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 7vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--ink-2);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+    }
+    .btn-row { display: flex; flex-direction: column; gap: 0.75rem; max-width: 320px; }
+    .btn-primary {
+      display: block;
+      text-align: center;
+      padding: 14px 24px;
+      background: var(--gold);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--gold-lt); }
+    .btn-ghost {
+      display: block;
+      text-align: center;
+      padding: 14px 24px;
+      border: 1px solid rgba(26,23,20,0.18);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      transition: background 0.15s;
+    }
+    .btn-ghost:hover { background: rgba(26,23,20,0.05); }
 
-  /* ---------- QUIZ ---------- */
-  .quiz-section{ background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .quiz-frame-wrap{
-    background:var(--paper);
-    border-radius:28px;
-    max-width:560px;
-    margin:0 auto;
-    padding:8px;
-    box-shadow:0 30px 80px -30px rgba(20,23,31,0.18);
-  }
-  .quiz-frame-wrap iframe{
-    width:100%;
-    border:none;
-    display:block;
-    min-height:520px;
-  }
-  @media (max-width:640px){ .quiz-frame-wrap{ border-radius:20px; padding:4px; } }
+    /* STORY */
+    #story {
+      padding: 3.5rem 0;
+      background: var(--cream-2);
+      border-top: 0.5px solid var(--rule);
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .story-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      line-height: 1.65;
+      color: var(--ink);
+      max-width: 600px;
+      margin-bottom: 1.25rem;
+    }
+    .story-byline {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-3);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
 
-  /* ---------- AVENUES (the path) ---------- */
-  .avenues{ position:relative; }
-  .path-line{
-    position:relative;
-    max-width:1000px; margin:0 auto;
-  }
-  .path-track{
-    position:absolute;
-    top:64px; left:64px; right:64px;
-    height:1px;
-    background:repeating-linear-gradient(to right, var(--line) 0 8px, transparent 8px 16px);
-    z-index:0;
-  }
-  @media (max-width:900px){ .path-track{ display:none; } }
+    /* QUIZ */
+    #quiz {
+      padding: 4.5rem 0;
+      background: var(--cream-2);
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+    }
+    .section-body {
+      font-size: 1rem;
+      color: var(--ink-2);
+      max-width: 460px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .quiz-cta {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--gold);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      transition: background 0.15s;
+    }
+    .quiz-cta:hover { background: var(--gold-lt); }
 
-  .avenue-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:36px;
-    position:relative; z-index:1;
-  }
-  @media (max-width:900px){ .avenue-grid{ grid-template-columns:1fr; gap:24px; } }
+    /* AVENUES */
+    #avenues {
+      padding: 4.5rem 0;
+      background: var(--cream);
+      border-top: 0.5px solid var(--rule);
+    }
+    .avenues-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .avenue-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 2rem 1.75rem 1.75rem;
+      box-shadow: 0 1px 4px rgba(26,23,20,0.06), 0 0 0 0.5px rgba(26,23,20,0.06);
+    }
+    .avenue-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .badge-01 { background: var(--teal); }
+    .badge-02 { background: #6D734B; }
+    .badge-03 { background: var(--gold); color: var(--ink); }
+    .avenue-sub {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--ink-3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .avenue-title {
+      font-family: var(--serif);
+      font-size: 1.9rem;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+      line-height: 1.15;
+    }
+    .avenue-body {
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .avenue-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .avenue-link:hover { color: var(--gold); border-color: var(--gold); }
 
-  .avenue-card{
-    background:var(--paper);
-    border:1px solid var(--line);
-    border-radius:22px;
-    padding:40px 32px;
-    display:flex; flex-direction:column;
-    transition:transform 0.25s ease, box-shadow 0.25s ease;
-    scroll-margin-top:120px;
-  }
-  .avenue-card:hover{ transform:translateY(-6px); box-shadow:0 24px 50px -28px rgba(20,23,31,0.28); }
+    /* COMMUNITY */
+    #community {
+      padding: 4.5rem 0;
+      background: var(--cream-2);
+      border-top: 0.5px solid var(--rule);
+    }
+    .regen-box {
+      margin: 2rem 0;
+      padding: 1.75rem;
+      background: var(--cream);
+      border-radius: var(--radius-card);
+      border: 0.5px solid var(--rule);
+    }
+    .regen-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .regen-body {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .chain { display: flex; flex-direction: column; gap: 0.65rem; }
+    .chain-step { display: flex; gap: 0.75rem; font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+    .chain-arrow { color: var(--gold); font-weight: 500; flex-shrink: 0; margin-top: 1px; }
+    .community-foot { font-size: 15px; color: var(--ink-2); margin-top: 1.75rem; line-height: 1.7; font-style: italic; }
 
-  .avenue-marker{
-    width:44px; height:44px; border-radius:50%;
-    background:var(--emerald); color:var(--paper);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Fraunces', serif; font-size:16px; font-weight:600;
-    margin-bottom:28px;
-  }
-  .avenue-card[data-avenue="activate"] .avenue-marker{ background:var(--emerald); }
-  .avenue-card[data-avenue="consolidate"] .avenue-marker{ background:var(--emerald-deep); }
-  .avenue-card[data-avenue="optimise"] .avenue-marker{ background:var(--gold); color:var(--ink); }
+    /* FOUNDING */
+    #founding {
+      padding: 4.5rem 0;
+      background: var(--ink);
+      border-top: 0.5px solid rgba(26,23,20,0.3);
+    }
+    #founding .section-label { color: rgba(240,237,231,0.35); }
+    #founding h2 { color: var(--cream); }
+    #founding .section-body { color: rgba(240,237,231,0.55); max-width: 520px; }
+    .spots-row { margin: 1rem 0 1.5rem; }
+    .spots-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 10px 18px;
+      background: rgba(176,138,62,0.12);
+      border: 0.5px solid rgba(176,138,62,0.35);
+      border-radius: var(--radius-pill);
+    }
+    .spots-num {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: var(--gold);
+      line-height: 1;
+      min-width: 2.5rem;
+      text-align: center;
+    }
+    .spots-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(240,237,231,0.55);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .founding-pill {
+      display: inline-block;
+      padding: 5px 14px;
+      border: 0.5px solid rgba(240,237,231,0.2);
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      color: rgba(240,237,231,0.55);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    .perks { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
+    .perk { display: flex; gap: 0.75rem; font-size: 15px; color: rgba(240,237,231,0.6); line-height: 1.55; }
+    .perk-check { color: var(--gold); flex-shrink: 0; }
 
-  .avenue-card .stage-label{ font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#78745f; margin-bottom:10px; }
-  .avenue-card h3{ font-family:'Fraunces', serif; font-size:26px; margin-bottom:14px; }
-  .avenue-card p{ font-size:15px; color:#4c4a42; line-height:1.65; margin-bottom:24px; flex:1; }
-  .avenue-card .avenue-cta{
-    font-size:13.5px; letter-spacing:0.03em; text-transform:uppercase; font-weight:600;
-    color:var(--ink); text-decoration:none; display:inline-flex; align-items:center; gap:8px;
-    border-bottom:1px solid var(--ink); padding-bottom:3px; align-self:flex-start;
-  }
-  .avenue-card .avenue-cta:hover{ color:var(--emerald); border-color:var(--emerald); }
+    /* FORM */
+    .form { display: flex; flex-direction: column; gap: 0.9rem; max-width: 480px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label {
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(240,237,231,0.35);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .field input, .field select {
+      padding: 12px 14px;
+      background: rgba(240,237,231,0.06);
+      border: 0.5px solid rgba(240,237,231,0.14);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+    .field input::placeholder { color: rgba(240,237,231,0.25); }
+    .field select { appearance: none; cursor: pointer; }
+    .field select option { color: var(--ink); background: #fff; }
+    .field input:focus, .field select:focus { border-color: rgba(240,237,231,0.35); }
+    .form-submit {
+      padding: 13px 28px;
+      background: var(--gold);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: background 0.15s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--gold-lt); }
+    .form-submit:disabled { opacity: 0.45; cursor: default; }
+    .form-note { font-size: 12px; color: rgba(240,237,231,0.28); }
+    .success-msg {
+      display: none;
+      padding: 1.1rem 1.4rem;
+      border: 0.5px solid rgba(240,237,231,0.2);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      color: rgba(240,237,231,0.65);
+    }
 
-  /* ---------- COMMUNITY ---------- */
-  .community{ background:var(--ink); color:var(--paper); }
-  .community .section-eyebrow{ color:var(--gold); }
-  .community .section-head p{ color:rgba(239,237,230,0.7); }
+    /* FOOTER */
+    footer {
+      padding: 1.75rem 0;
+      background: var(--ink);
+      border-top: 0.5px solid rgba(240,237,231,0.08);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(240,237,231,0.3);
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1.05rem; color: rgba(240,237,231,0.6); }
 
-  .events-list{ max-width:900px; }
-  .event-row{
-    display:flex; align-items:center; gap:28px;
-    padding:26px 0;
-    border-top:1px solid var(--line-on-dark);
-  }
-  .events-list .event-row:last-child{ border-bottom:1px solid var(--line-on-dark); }
-  .event-date{
-    font-family:'Fraunces', serif; font-size:15px; color:var(--gold);
-    width:110px; flex-shrink:0;
-  }
-  .event-info{ flex:1; }
-  .event-info h4{ font-family:'Fraunces', serif; font-size:19px; font-weight:500; margin-bottom:4px; }
-  .event-info span{ font-size:13.5px; color:rgba(239,237,230,0.55); }
-  .event-row .btn-ghost{ padding:10px 22px; font-size:12px; flex-shrink:0; }
-  @media (max-width:640px){
-    .event-row{ flex-wrap:wrap; gap:10px; }
-    .event-date{ width:auto; }
-  }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    background:var(--ink);
-    color:rgba(239,237,230,0.5);
-    padding:40px 0 48px;
-    border-top:1px solid var(--line-on-dark);
-    font-size:13px;
-  }
-  .footer-row{
-    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
-  }
-  .footer-wordmark{ font-family:'Fraunces', serif; color:var(--paper); font-size:17px; }
-
-  ::selection{ background:var(--gold); color:var(--ink); }
-  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
-</style>
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .btn-row { max-width: 100%; }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-wordmark">Fittfi</div>
-  <div class="nav-links">
-    <a href="#quiz">Assessment</a>
-    <a href="#avenues">Avenues</a>
-    <a href="#community">Community</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Fittfi — Financial Fitness</div>
-    <h1>Own your financial story</h1>
-    <p class="sub">A platform for women willing to act.</p>
-    <div class="hero-cta">
-      <a href="#quiz" class="btn btn-primary">Start the 4-minute assessment</a>
-      <a href="#avenues" class="btn btn-ghost">See the three avenues</a>
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">Fittfi</a>
+      <ul class="nav-links">
+        <li><a href="#quiz">Assessment</a></li>
+        <li><a href="#avenues">Avenues</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#founding">Join</a></li>
+      </ul>
     </div>
-  </div>
-</header>
+  </nav>
 
-<!-- QUIZ -->
-<section class="quiz-section" id="quiz">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Start here</div>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="wrap">
+      <p class="hero-eyebrow">Fittfi — Financial Fitness</p>
+      <h1>Own your financial story</h1>
+      <p class="hero-sub">A platform for women willing to act.</p>
+      <div class="btn-row">
+        <a href="#quiz" class="btn-primary">Start the 4-minute assessment</a>
+        <a href="#founding" class="btn-ghost">Join the community</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="wrap">
+      <p class="story-quote">The founder arrived in Geneva six years ago with 400 CHF in her pocket. At 34, she had used all her savings and needed to start afresh. Within 6 years she rebuilt herself — owning CHF 500K of assets and understanding how to keep growing and optimising. Fittfi is the product she built for herself, but wished had existed before she went broke.</p>
+      <p class="story-byline">Henny Schlesinger · Founder, Fittfi</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz">
+    <div class="wrap">
+      <p class="section-label">Start here</p>
       <h2>A few honest questions.</h2>
-      <p>No jargon, no judgement, no scores.<br>Four minutes — this tells us which avenue fits where you are today.</p>
+      <p class="section-body">No jargon, no judgement, no scores. Four minutes — this tells us which avenue fits where you are today.</p>
+      <a href="quiz.html" class="quiz-cta">Take the 4-minute assessment →</a>
     </div>
+  </section>
 
-    <div class="quiz-frame-wrap">
-      <iframe id="fittfiQuizFrame" src="quiz.html" title="Fittfi assessment" scrolling="no"></iframe>
-    </div>
-  </div>
-</section>
-
-<!-- AVENUES -->
-<section class="avenues" id="avenues">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">The three avenues</div>
+  <!-- AVENUES -->
+  <section id="avenues">
+    <div class="wrap">
+      <p class="section-label">The three avenues</p>
       <h2>Wherever you're starting, there's a next move.</h2>
-      <p>Financial fitness isn't one destination. It's a sequence — activate, consolidate, optimise — and you can enter at any point.</p>
-    </div>
-
-    <div class="path-line">
-      <div class="path-track"></div>
-      <div class="avenue-grid">
-        <div class="avenue-card" data-avenue="activate">
-          <div class="avenue-marker">01</div>
-          <div class="stage-label">For those starting out</div>
-          <h3>Activate</h3>
-          <p>For women who don't yet have an investment account in their own name. We walk you through opening one, choosing the right structure, and making your first move without second-guessing it.</p>
-          <a href="#" class="avenue-cta">Open your account →</a>
+      <p class="section-body">Financial fitness isn't one destination. It's a sequence — and you can enter, drop off and come back at any point.</p>
+      <div class="avenues-list">
+        <div class="avenue-card">
+          <div class="avenue-badge badge-01">01</div>
+          <p class="avenue-sub">For those starting out</p>
+          <h3 class="avenue-title">Activate</h3>
+          <p class="avenue-body">For women who don't yet have an investment account in their own name. We walk you through opening one, choosing the right structure, and making your first move without second-guessing it.</p>
+          <a href="#quiz" class="avenue-link">Open your account →</a>
         </div>
-
-        <div class="avenue-card" data-avenue="consolidate">
-          <div class="avenue-marker">02</div>
-          <div class="stage-label">For those with scattered assets</div>
-          <h3>Consolidate</h3>
-          <p>For women whose money is spread across accounts, banks, and inherited arrangements. We bring it into one clear view, cut what's redundant, and rebuild a structure you actually understand.</p>
-          <a href="#" class="avenue-cta">See your full picture →</a>
+        <div class="avenue-card">
+          <div class="avenue-badge badge-02">02</div>
+          <p class="avenue-sub">For those with scattered assets</p>
+          <h3 class="avenue-title">Consolidate</h3>
+          <p class="avenue-body">For women whose money is spread across accounts, banks, currencies, and inherited arrangements. We bring it into one clear view and rebuild a structure you actually understand.</p>
+          <a href="#quiz" class="avenue-link">See your full picture →</a>
         </div>
-
-        <div class="avenue-card" data-avenue="optimise">
-          <div class="avenue-marker">03</div>
-          <div class="stage-label">For those ready to sharpen</div>
-          <h3>Optimise</h3>
-          <p>For women with a working portfolio who want more from it. We review allocation, fees, and tax drag, and tighten the strategy so your capital is doing as much as you are.</p>
-          <a href="#" class="avenue-cta">Sharpen your strategy →</a>
+        <div class="avenue-card">
+          <div class="avenue-badge badge-03">03</div>
+          <p class="avenue-sub">For those ready to sharpen</p>
+          <h3 class="avenue-title">Optimise</h3>
+          <p class="avenue-body">For women with a working portfolio who want more from it. We review allocation, fees, and tax drag — and tighten the strategy so your capital is doing as much as you are.</p>
+          <a href="#quiz" class="avenue-link">Sharpen your strategy →</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- COMMUNITY -->
-<section class="community" id="community">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="section-eyebrow">Community</div>
-      <h2>Learn alongside women doing the same work.</h2>
-      <p>Small, in-person and virtual sessions — no pitch, no jargon. Just straight talk about money, from people further down the road.</p>
+  <!-- COMMUNITY -->
+  <section id="community">
+    <div class="wrap">
+      <p class="section-label">How it works</p>
+      <h2>Women helping women — at every stage.</h2>
+      <p class="section-body">Fittfi is not a course, a newsletter, or an app. It's a community where women who have figured something out pass it on to the women who haven't yet.</p>
+      <div class="regen-box">
+        <p class="regen-label">Regenerative by design</p>
+        <p class="regen-body">Today's student becomes tomorrow's mentor. Every woman who levels up brings the next one with her. The community sustains itself — and grows stronger with every member who moves forward.</p>
+        <div class="chain">
+          <div class="chain-step"><span class="chain-arrow">→</span><span>Henny helped Maya spot a CHF 2,500 annual fee she was overpaying</span></div>
+          <div class="chain-step"><span class="chain-arrow">→</span><span>Henny helped Ruby open her first investment account after years of believing markets weren't for her</span></div>
+          <div class="chain-step"><span class="chain-arrow">→</span><span>Maya is now mentoring Lee on how to build a dashboard and read her PNL</span></div>
+          <div class="chain-step"><span class="chain-arrow">→</span><span>Lee will help the next woman take her first step</span></div>
+        </div>
+      </div>
+      <p class="community-foot">Community delivers the human connection. AI handles the matching. Together they make personalised financial guidance scalable.</p>
     </div>
+  </section>
 
-    <div class="events-list">
-      <div class="event-row">
-        <div class="event-date">12 Sep</div>
-        <div class="event-info">
-          <h4>Opening your first account — live walkthrough</h4>
-          <span>Virtual · 60 minutes · Activate track</span>
+  <!-- FOUNDING MEMBERS -->
+  <section id="founding">
+    <div class="wrap">
+      <p class="section-label">Founding members</p>
+      <div class="founding-pill">First 100 women · Free lifetime access</div>
+      <div class="spots-row">
+        <div class="spots-badge" id="spots-badge">
+          <span class="spots-num" id="spots-num">99</span>
+          <span class="spots-label">spots remaining</span>
         </div>
-        <a href="#" class="btn btn-ghost">Reserve a seat</a>
       </div>
-      <div class="event-row">
-        <div class="event-date">27 Sep</div>
-        <div class="event-info">
-          <h4>Untangling inherited and legacy accounts</h4>
-          <span>Geneva · Small group · Consolidate track</span>
-        </div>
-        <a href="#" class="btn btn-ghost">Reserve a seat</a>
+      <h2>Be part of building this.</h2>
+      <p class="section-body">Eventually we'd like to enrich and empower every woman and man out there. But we need to start small and start somewhere. So we invite you to be one of the first hundred women who want to shape what Fittfi becomes — and get free access for life in return.</p>
+      <div class="perks">
+        <div class="perk"><span class="perk-check">✓</span><span>Free lifetime membership — no subscription ever</span></div>
+        <div class="perk"><span class="perk-check">✓</span><span>Personal onboarding call with the founder</span></div>
+        <div class="perk"><span class="perk-check">✓</span><span>Matched to a mentor based on where you are</span></div>
+        <div class="perk"><span class="perk-check">✓</span><span>Your feedback shapes the product</span></div>
       </div>
-      <div class="event-row">
-        <div class="event-date">9 Oct</div>
-        <div class="event-info">
-          <h4>Fees and tax drag: what's quietly costing you</h4>
-          <span>Virtual · 45 minutes · Optimise track</span>
+      <form class="form" id="founding-form">
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">Your name</label>
+            <input type="text" id="fname" name="Name" placeholder="First name" required>
+          </div>
+          <div class="field">
+            <label for="femail">Your email</label>
+            <input type="email" id="femail" name="email" placeholder="you@email.com" required>
+          </div>
         </div>
-        <a href="#" class="btn btn-ghost">Reserve a seat</a>
+        <div class="field">
+          <label for="fwhatsapp">Your WhatsApp</label>
+          <input type="tel" id="fwhatsapp" name="WhatsApp" placeholder="+41 76 000 0000" required>
+        </div>
+        <div class="field">
+          <label for="favenue">Which avenue resonates most?</label>
+          <select id="favenue" name="Avenue" required>
+            <option value="" disabled selected>Choose one</option>
+            <option value="Activate">Activate</option>
+            <option value="Consolidate">Consolidate</option>
+            <option value="Optimise">Optimise</option>
+          </select>
+        </div>
+        <input type="hidden" name="_subject" value="New Fittfi Founding Member Application">
+        <button type="submit" class="form-submit" id="submit-btn">Apply for founding membership</button>
+        <p class="form-note">We'll be in touch personally. No spam, ever.</p>
+        <div class="success-msg" id="success-msg">Thank you — we'll be in touch soon. Welcome to Fittfi.</div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap-wide">
+      <div class="footer-inner">
+        <span class="footer-logo">Fittfi</span>
+        <span>© 2026 Fittfi · Own your financial story</span>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<footer>
-  <div class="wrap footer-row">
-    <div class="footer-wordmark">Fittfi</div>
-    <div>© 2026 Fittfi. Own your financial story.</div>
-  </div>
-</footer>
+  <script>
+    // Spots remaining is a static number, not a live shared counter.
+    // countapi.xyz (the previous backend for this) shut down and silently broke the count.
+    // A truly live, shared-across-visitors counter needs a real backend (e.g. a Netlify
+    // Function + a small database/KV store) — update SPOTS_REMAINING by hand for now
+    // whenever you want to move the number, based on actual signups.
+    const SPOTS_REMAINING = 99;
 
-<script>
-(function(){
-  window.addEventListener('message', function(e){
-    if(e.data && typeof e.data.fittfiQuizHeight === 'number'){
-      const frame = document.getElementById('fittfiQuizFrame');
-      if(frame) frame.style.height = (e.data.fittfiQuizHeight + 24) + 'px';
+    function updateDisplay(n) {
+      const el = document.getElementById('spots-num');
+      if (el) el.textContent = Math.max(0, n);
     }
-  });
-})();
-</script>
+
+    updateDisplay(SPOTS_REMAINING);
+
+    const form = document.getElementById('founding-form');
+    const btn = document.getElementById('submit-btn');
+    const success = document.getElementById('success-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      const data = {};
+      new FormData(form).forEach((v, k) => data[k] = v);
+      try {
+        const res = await fetch('https://formspree.io/f/mojggzng', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        }
+        else throw new Error();
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Apply for founding membership';
+        alert('Something went wrong — please try again.');
+      }
+    });
+  </script>
 
 </body>
 </html>
