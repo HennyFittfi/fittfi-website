@@ -437,6 +437,17 @@
       font-size: 11px;
       color: rgba(240,237,231,0.3);
     }
+    .footer-disclaimer {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 0.5px solid rgba(240,237,231,0.08);
+      font-size: 10.5px;
+      line-height: 1.7;
+      color: rgba(240,237,231,0.28);
+      max-width: 720px;
+    }
+    .footer-disclaimer p { margin-bottom: 0.6rem; }
+    .footer-disclaimer p:last-child { margin-bottom: 0; }
     .footer-logo { font-family: var(--serif); font-size: 0.95rem; color: rgba(240,237,231,0.6); }
 
     @media (max-width: 800px) {
@@ -459,6 +470,7 @@
         <li><a href="#avenues">Avenues</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="#founding">Join</a></li>
+        <li><a href="login.html">Log in</a></li>
       </ul>
     </div>
   </nav>
@@ -493,22 +505,22 @@
           <div class="avenue-badge badge-01">01</div>
           <p class="avenue-sub">For those starting out</p>
           <h3 class="avenue-title">Activate</h3>
-          <p class="avenue-body">For women who don't yet have an investment account in their own name. We walk you through opening one, choosing the right structure, and making your first move without second-guessing it.</p>
-          <a href="#quiz" class="avenue-link">Open your account →</a>
+          <p class="avenue-body">For women who don't yet have an investment account in their own name. Get clear on where to start, understand your options, and take your first step with confidence — at your own pace.</p>
+          <a href="#quiz" class="avenue-link">Take the first step →</a>
         </div>
         <div class="avenue-card">
           <div class="avenue-badge badge-02">02</div>
           <p class="avenue-sub">For those with scattered assets</p>
           <h3 class="avenue-title">Consolidate</h3>
-          <p class="avenue-body">For women whose money is spread across accounts, banks, currencies, and inherited arrangements. We bring it into one clear view and rebuild a structure you actually understand.</p>
+          <p class="avenue-body">For women whose money is spread across accounts, banks, currencies, and inherited arrangements. Get a clear picture of what you actually have — so you can decide what to do with it.</p>
           <a href="#quiz" class="avenue-link">See your full picture →</a>
         </div>
         <div class="avenue-card">
           <div class="avenue-badge badge-03">03</div>
           <p class="avenue-sub">For those ready to sharpen</p>
           <h3 class="avenue-title">Optimise</h3>
-          <p class="avenue-body">For women with a working portfolio who want more from it. We review allocation, fees, and tax drag — and tighten the strategy so your capital is doing as much as you are.</p>
-          <a href="#quiz" class="avenue-link">Sharpen your strategy →</a>
+          <p class="avenue-body">For women with a working portfolio who want more from it. Understand where you can improve allocation, fees, and tax drag — then find the right questions to bring to your advisor or broker.</p>
+          <a href="#quiz" class="avenue-link">Find your next move →</a>
         </div>
       </div>
     </div>
@@ -531,6 +543,7 @@
         </div>
       </div>
       <p class="community-foot">Community delivers the human connection. AI handles the matching. Together they make personalised financial guidance scalable.</p>
+      <a href="members.html" class="avenue-link" style="display:inline-block; margin-top:1.5rem;">Meet the community →</a>
     </div>
   </section>
 
@@ -577,6 +590,20 @@
             <option value="Optimise">Optimise</option>
           </select>
         </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="flinkedin">LinkedIn (optional)</label>
+            <input type="url" id="flinkedin" name="LinkedIn" placeholder="linkedin.com/in/you">
+          </div>
+          <div class="field">
+            <label for="finstagram">Instagram (optional)</label>
+            <input type="url" id="finstagram" name="Instagram" placeholder="instagram.com/you">
+          </div>
+        </div>
+        <div class="field">
+          <label for="ffacebook">Facebook (optional)</label>
+          <input type="url" id="ffacebook" name="Facebook" placeholder="facebook.com/you">
+        </div>
         <input type="hidden" name="_subject" value="New Fittfi Founding Member Application">
         <button type="submit" class="form-submit" id="submit-btn">Apply for founding membership</button>
         <p class="form-note">We'll be in touch personally. No spam, ever.</p>
@@ -588,7 +615,7 @@
   <!-- STORY -->
   <section id="story">
     <div class="wrap">
-      <p class="story-quote">The founder arrived in Geneva six years ago with 400 CHF in her pocket. At 34, she had used all her savings and needed to start afresh. Within 6 years she rebuilt herself — owning more than CHF 500K of assets; understanding how to keep growing and optimising. Fittfi is the product she built for herself, but wished had existed before she went broke.</p>
+      <p class="story-quote">The founder arrived in Geneva six years ago with 400 CHF in her pocket. At 34, she had used all her savings and needed to start afresh. Within 6 years she rebuilt herself — owning more than CHF 500K of equity; understanding how to keep growing and optimising. Fittfi is the product she built for herself, but wished had existed before she went broke.</p>
       <p class="story-byline">Henny Schlesinger · Founder, Fittfi</p>
     </div>
   </section>
@@ -598,6 +625,11 @@
       <div class="footer-inner">
         <span class="footer-logo">Fittfi</span>
         <span>© 2026 Fittfi · Own your financial story</span>
+      </div>
+      <div class="footer-disclaimer">
+        <p>Fittfi provides financial education, community knowledge sharing, and referrals to licensed financial service providers. Nothing on this platform — including quiz results, community discussions, mentor conversations, or any content — constitutes regulated financial advice.</p>
+        <p>We are not licensed financial advisors. Any action you take with your money is your own decision. Fittfi is a place that encourages you to take ownership — and you may be connected to a licensed professional via the platform, or not.</p>
+        <p>Fittfi is here to help you ask better questions — not to answer them for you.</p>
       </div>
     </div>
   </footer>
