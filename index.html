@@ -635,19 +635,41 @@
   </footer>
 
   <script>
-    // Spots remaining is a static number, not a live shared counter.
-    // countapi.xyz (the previous backend for this) shut down and silently broke the count.
-    // A truly live, shared-across-visitors counter needs a real backend (e.g. a Netlify
-    // Function + a small database/KV store) — update SPOTS_REMAINING by hand for now
-    // whenever you want to move the number, based on actual signups.
-    const SPOTS_REMAINING = 99;
+    // Spots remaining is a live, shared-across-visitors counter backed by a
+    // Netlify Function + Netlify Blobs (see netlify/functions/spots.js).
+    // GET returns the current count; POST decrements it by one. Falls back
+    // to a static number if the function isn't reachable for any reason.
+    const SPOTS_FALLBACK = 99;
 
     function updateDisplay(n) {
       const el = document.getElementById('spots-num');
       if (el) el.textContent = Math.max(0, n);
     }
 
-    updateDisplay(SPOTS_REMAINING);
+    async function loadSpots() {
+      try {
+        const res = await fetch('/.netlify/functions/spots');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        updateDisplay(data.remaining);
+      } catch {
+        updateDisplay(SPOTS_FALLBACK);
+      }
+    }
+
+    async function decrementSpots() {
+      try {
+        const res = await fetch('/.netlify/functions/spots', { method: 'POST' });
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        updateDisplay(data.remaining);
+      } catch {
+        // If this fails, the count just won't move for this signup —
+        // it'll still be accurate next time someone loads the page.
+      }
+    }
+
+    loadSpots();
 
     const form = document.getElementById('founding-form');
     const btn = document.getElementById('submit-btn');
@@ -667,6 +689,7 @@
         if (res.ok) {
           form.style.display = 'none';
           success.style.display = 'block';
+          decrementSpots();
         }
         else throw new Error();
       } catch {
