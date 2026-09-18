@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fittfi — Community</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:   #F0EDE7;
+      --cream-2: #E6E3DA;
+      --gold:    #B08A3E;
+      --gold-lt: #C9A455;
+      --teal:    #2A5C57;
+      --ink:     #1A1714;
+      --ink-2:   #5C564E;
+      --ink-3:   #9A9188;
+      --rule:    rgba(26,23,20,0.10);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --radius-pill: 50px;
+      --radius-card: 16px;
+      --gutter: clamp(1.5rem, 8vw, 6rem);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(240,237,231,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--rule);
+    }
+    .nav-inner {
+      width: 100%;
+      padding: 0 var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-2);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    .wrap-wide { max-width: 960px; margin: 0 auto 0 var(--gutter); padding: 0 1.5rem 0 0; }
+
+    header.page-head {
+      padding: 4rem 0 2.5rem;
+    }
+    .page-head .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .page-head p {
+      font-size: 15px;
+      color: var(--ink-2);
+      max-width: 560px;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding-bottom: 4rem;
+    }
+    .member-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: 0 1px 4px rgba(26,23,20,0.06), 0 0 0 0.5px rgba(26,23,20,0.06);
+      padding: 2rem 1.75rem;
+    }
+    .avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 20px;
+      margin-bottom: 1.25rem;
+    }
+    .member-name { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.15rem; }
+    .member-role { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+    .member-meta { font-size: 12px; color: var(--ink-3); margin-bottom: 0.9rem; }
+    .member-bio { font-size: 13.5px; color: var(--ink-2); line-height: 1.6; }
+
+    .member-card.open {
+      background: transparent;
+      border: 1px dashed var(--ink-3);
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .member-card.open .member-name { color: var(--ink-2); }
+    .member-card.open a {
+      margin-top: 0.75rem;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 1px;
+    }
+    .member-card.open a:hover { color: var(--gold); border-color: var(--gold); }
+
+    footer {
+      padding: 1.75rem 0;
+      background: var(--ink);
+      border-top: 0.5px solid rgba(240,237,231,0.08);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: rgba(240,237,231,0.3);
+    }
+    .footer-logo { font-family: var(--serif); font-size: 0.95rem; color: rgba(240,237,231,0.6); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Fittfi</a>
+      <ul class="nav-links">
+        <li><a href="index.html#quiz">Assessment</a></li>
+        <li><a href="index.html#avenues">Avenues</a></li>
+        <li><a href="index.html#community">Community</a></li>
+        <li><a href="index.html#founding">Join</a></li>
+        <li><a href="login.html">Log in</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrap-wide">
+    <header class="page-head">
+      <p class="section-label">The community</p>
+      <h1>Women helping women — meet who's here.</h1>
+      <p>This is early — we're building it one member at a time, in the open. Every founding member gets a place here.</p>
+    </header>
+
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="avatar">HS</div>
+        <div class="member-name">Henny Schlesinger</div>
+        <div class="member-role">Founder, Fittfi · Member #1</div>
+        <div class="member-meta">Geneva, Switzerland</div>
+        <div class="member-bio">Rebuilt her finances from scratch after starting over in Geneva six years ago. Built Fittfi to be the resource she wished she'd had. Full profile photo coming soon.</div>
+      </div>
+
+      <div class="member-card open">
+        <div class="member-name">This could be you.</div>
+        <div class="member-meta">Founding member spots are still open.</div>
+        <a href="index.html#founding">Apply for founding membership →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap-wide">
+      <div class="footer-inner">
+        <span class="footer-logo">Fittfi</span>
+        <span>© 2026 Fittfi · Own your financial story</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
