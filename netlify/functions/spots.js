@@ -34,6 +34,7 @@ exports.handler = async (event) => {
 
     return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
   } catch (err) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: "Something went wrong" }) };
+    console.error("spots function error:", err && err.stack ? err.stack : err);
+    return { statusCode: 500, headers, body: JSON.stringify({ error: "Something went wrong", detail: String(err && err.message || err) }) };
   }
 };
