@@ -397,6 +397,40 @@
     .field select { appearance: none; cursor: pointer; }
     .field select option { color: var(--ink); background: #fff; }
     .field input:focus, .field select:focus { border-color: rgba(240,237,231,0.35); }
+    .field textarea {
+      padding: 11px 14px;
+      background: rgba(240,237,231,0.06);
+      border: 0.5px solid rgba(240,237,231,0.14);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.15s;
+      resize: vertical;
+      min-height: 54px;
+    }
+    .field textarea::placeholder { color: rgba(240,237,231,0.25); }
+    .field textarea:focus { border-color: rgba(240,237,231,0.35); }
+    .field-hint { font-size: 11px; color: rgba(240,237,231,0.3); line-height: 1.5; }
+    .field input[type="file"] {
+      padding: 9px 0;
+      font-size: 12px;
+      color: rgba(240,237,231,0.6);
+      border: none;
+      background: none;
+    }
+    .field input[type="file"]::file-selector-button {
+      padding: 7px 14px;
+      margin-right: 10px;
+      background: rgba(240,237,231,0.1);
+      border: 0.5px solid rgba(240,237,231,0.14);
+      border-radius: var(--radius-pill);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 11px;
+      cursor: pointer;
+    }
     .form-submit {
       padding: 12px 26px;
       background: var(--gold);
@@ -586,6 +620,45 @@
         </div>
         <div class="form-row">
           <div class="field">
+            <label for="fage">Your age</label>
+            <input type="number" id="fage" name="Age" min="18" max="100" placeholder="34" required>
+          </div>
+          <div class="field">
+            <label for="flocation">Current location</label>
+            <input type="text" id="flocation" name="Current location" placeholder="City, Country" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fplaces">Places you've lived (optional)</label>
+          <input type="text" id="fplaces" name="Places lived" placeholder="e.g. Tel Aviv, London, Geneva">
+        </div>
+        <div class="field">
+          <label for="foccupation">Current occupation</label>
+          <input type="text" id="foccupation" name="Occupation" placeholder="e.g. Marketing Director" required>
+        </div>
+        <div class="field">
+          <label for="fassets">Approximate investable assets</label>
+          <p class="field-hint">Private — used only to help us match you well. Never shown publicly.</p>
+          <select id="fassets" name="Approximate investable assets (private)" required>
+            <option value="" disabled selected>Choose a range</option>
+            <option value="Under CHF 500K">Under CHF 500K</option>
+            <option value="CHF 500K–2M">CHF 500K–2M</option>
+            <option value="CHF 2M–5M">CHF 2M–5M</option>
+            <option value="CHF 5M+">CHF 5M+</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fbio">Describe yourself financially, in one line (optional)</label>
+          <p class="field-hint">This can appear on your public community profile — keep it proud, not precise. e.g. "Rebuilt from zero into a diversified portfolio after starting over at 34." or "Built a seven-figure portfolio while running my own business."</p>
+          <textarea id="fbio" name="Financial snapshot (public)" maxlength="140" placeholder="One sentence about your financial journey or where you are today"></textarea>
+        </div>
+        <div class="field">
+          <label for="fphoto">Photo for your profile (optional)</label>
+          <input type="file" id="fphoto" name="Photo" accept="image/*">
+        </div>
+        <div class="form-row">
+          <div class="field">
             <label for="flinkedin">LinkedIn (optional)</label>
             <input type="url" id="flinkedin" name="LinkedIn" placeholder="linkedin.com/in/you">
           </div>
@@ -651,13 +724,11 @@
       e.preventDefault();
       btn.disabled = true;
       btn.textContent = 'Sending…';
-      const data = {};
-      new FormData(form).forEach((v, k) => data[k] = v);
       try {
         const res = await fetch('https://formspree.io/f/mojggzng', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
         });
         if (res.ok) {
           form.style.display = 'none';
