@@ -211,7 +211,7 @@
           body:JSON.stringify(buildPayload(type))
         });
         const data=await res.json();
-        if(res.ok){ showThankYou(); }
+        if(res.ok){ showThankYou(type); }
         else { throw new Error(data.error||'Submit failed'); }
       } catch(e){
         btn.disabled=false;
@@ -266,12 +266,17 @@
         </div>`;
     }
 
-    function showThankYou(){
+    function showThankYou(type){
       document.getElementById('screen').innerHTML=`
         <div class="thankyou-card">
           <div class="thankyou-icon">✓</div>
           <div class="thankyou-title">Thank you — this is genuinely helpful.</div>
           <div class="thankyou-body">Your answers are on their way. We'll be in touch if you left your email — and either way, what you shared will help shape something real.</div>
+        </div>
+        <div class="mentor-card" style="margin-top:1rem;">
+          <div class="mentor-title" style="font-size:19px;">Want in from the start?</div>
+          <div class="mentor-body" style="margin-bottom:1.1rem;">We're taking the first 100 founding members — free lifetime access, in exchange for helping shape what Fittfi becomes.</div>
+          <a class="submit-btn" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box;" href="https://fittfi.com/#founding" target="_top">Apply for founding membership →</a>
         </div>`;
     }
 
