@@ -552,12 +552,6 @@
     <div class="wrap">
       <p class="section-label">Founding members</p>
       <div class="founding-pill">First 100 women · Free lifetime access</div>
-      <div class="spots-row">
-        <div class="spots-badge" id="spots-badge">
-          <span class="spots-num" id="spots-num">99</span>
-          <span class="spots-label">spots remaining</span>
-        </div>
-      </div>
       <h2>Be part of building this.</h2>
       <p class="section-body">Eventually we'd like to enrich and empower every woman and man out there. But we need to start small and start somewhere. So we invite you to be one of the first hundred women who want to shape what Fittfi becomes — and get free access for life in return.</p>
       <div class="perks">
@@ -635,41 +629,20 @@
   </footer>
 
   <script>
-    // Spots remaining is a live, shared-across-visitors counter backed by a
-    // Netlify Function + Netlify Blobs (see netlify/functions/spots.js).
-    // GET returns the current count; POST decrements it by one. Falls back
-    // to a static number if the function isn't reachable for any reason.
-    const SPOTS_FALLBACK = 99;
-
-    function updateDisplay(n) {
-      const el = document.getElementById('spots-num');
-      if (el) el.textContent = Math.max(0, n);
-    }
-
-    async function loadSpots() {
-      try {
-        const res = await fetch('/.netlify/functions/spots');
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        updateDisplay(data.remaining);
-      } catch {
-        updateDisplay(SPOTS_FALLBACK);
-      }
-    }
-
+    // The "spots remaining" badge is hidden on the page for now (not enough
+    // real signups yet to show an honest live number). The counter is still
+    // tracked silently in the background via a Netlify Function + Netlify
+    // Blobs (see netlify/functions/spots.js), so real numbers are ready
+    // whenever the badge gets switched back on — just re-add the
+    // .spots-row/.spots-badge/.spots-num markup and a loadSpots() call that
+    // fetches GET /.netlify/functions/spots on page load.
     async function decrementSpots() {
       try {
-        const res = await fetch('/.netlify/functions/spots', { method: 'POST' });
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        updateDisplay(data.remaining);
+        await fetch('/.netlify/functions/spots', { method: 'POST' });
       } catch {
-        // If this fails, the count just won't move for this signup —
-        // it'll still be accurate next time someone loads the page.
+        // Silent tracking only — a failure here doesn't affect the visible page.
       }
     }
-
-    loadSpots();
 
     const form = document.getElementById('founding-form');
     const btn = document.getElementById('submit-btn');
